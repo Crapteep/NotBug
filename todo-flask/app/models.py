@@ -16,3 +16,14 @@ class Task(TaskBase, table=True):
 
 class TaskCreate(TaskBase):
     pass
+
+
+class Tasks(SQLModel):
+    data: list[Task]
+    count: int
+
+
+class TaskUpdate(TaskBase):
+    title: str | None = Field(default=None, max_length=80)
+    description: str | None = Field(default=None, max_length=200)
+    completed: bool | None
