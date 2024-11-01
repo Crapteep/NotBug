@@ -23,8 +23,7 @@ def create_app():
 
     app.config["SQLALCHEMY_TRAC_MODIFICATIONS"] = False
 
-
-    app.register_blueprint(tasks_bp, url_prefix=settings.API_V1_STR)
+    app.register_blueprint(tasks_bp, url_prefix=f"{settings.API_V1_STR}/tasks")
     return app
 
 
