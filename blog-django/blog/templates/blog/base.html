@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Blog{% endblock %}</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background-color: #f4f4f9; color: #333; padding: 20px; }
+        a { text-decoration: none; color: #3498db; }
+        a:hover { color: #2980b9; }
+
+        .container { max-width: 800px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+        header { text-align: center; padding: 10px 0; }
+        nav a { margin: 0 10px; font-weight: bold; }
+        h2 { color: #3498db; }
+
+        form { display: flex; flex-direction: column; gap: 10px; }
+        input, textarea, button { padding: 10px; border-radius: 4px; border: 1px solid #ddd; }
+        input:focus, textarea:focus { outline: none; border-color: #3498db; }
+        button { background-color: #3498db; color: #fff; cursor: pointer; border: none; }
+        button:hover { background-color: #2980b9; }
+
+        .error { color: #e74c3c; }
+        .post-list { list-style-type: none; margin-top: 20px; }
+        .post-item { padding: 10px; margin: 10px 0; border-bottom: 1px solid #ddd; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>My Blog</h1>
+            <nav>
+                <a href="{% url 'blog:post_list' %}">Home</a>
+                <a href="{% url 'blog:post_create' %}">New Post</a>
+                {% if user.is_authenticated %}
+                <form method="POST" action="{% url 'blog:logout' %}">
+                    {% csrf_token %}
+                    <button type="submit">Logout</button>
+                </form>
+                {% else %}
+                    <a href="{% url 'blog:login' %}">Login</a>
+                    <a href="{% url 'blog:register' %}">Register</a>
+                {% endif %}
+            </nav>
+        </header>
+        
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
