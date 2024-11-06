@@ -1,14 +1,25 @@
-
 {% extends 'blog/base.html' %}
 
-{% block title %}Create a New Post{% endblock %}
+{% block title %}
+    {% if is_update %}
+        Edit Post: {{ post.title }}
+    {% else %}
+        Create a New Post
+    {% endif %}
+{% endblock %}
 
 {% block content %}
-<h2>Create a New Post</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Create Post</button>
-</form>
-<a href="{% url 'blog:post_list' %}">Back to Post List</a>
+    <h2>
+        {% if is_update %}
+            Edit Post: {{ post.title }}
+        {% else %}
+            Create a New Post
+        {% endif %}
+    </h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">{% if is_update %}Update Post{% else %}Create Post{% endif %}</button>
+    </form>
+    <a href="{% url 'blog:post_list' %}">Back to Post List</a>
 {% endblock %}

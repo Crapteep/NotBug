@@ -22,6 +22,7 @@ def create_app():
         CORS(app, resources={r"/*": {"origins": [str(origin).strip("/") for origin in settings.BACKEND_CORS_ORIGINS]}})
 
     app.config["SQLALCHEMY_TRAC_MODIFICATIONS"] = False
+    app.config['APP_NAME'] = settings.PROJECT_NAME
 
     app.register_blueprint(tasks_bp, url_prefix=f"{settings.API_V1_STR}/tasks")
     return app

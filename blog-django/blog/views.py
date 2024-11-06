@@ -41,7 +41,7 @@ def post_create(request):
             post = form.save(commit=False)
             post.author = request.user
             post.save()
-            return redirect('blog:post_detail', pk=post.pk)
+            return redirect('blog:post_list')
     else:
         form = PostForm()
 
@@ -60,11 +60,11 @@ def post_update(request, pk):
             return redirect('blog:post_detail', pk=post.pk)
     else:
         form = PostForm(instance=post)
-    return render(request, 'blog/post_form.html', {'form': form})
+    return render(request, 'blog/post_form.html', {'form': form, 'is_update': True, 'post': post})
 
 
 def post_list(request):
-    posts = Post.objects.all()
+    posts = Post.objects.all().order_by('-created_at')
     return render(request, 'blog/post_list.html', {'posts': posts})
 
 

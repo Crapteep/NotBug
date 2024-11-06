@@ -1,4 +1,3 @@
-
 {% extends 'blog/base.html' %}
 
 {% block title %}All Posts{% endblock %}
@@ -9,9 +8,12 @@
     <ul class="post-list">
         {% for post in posts %}
             <li class="post-item">
-                <h3><a href="{% url 'blog:post_update' post.pk %}">{{ post.title }}</a></h3>
-                <p>By {{ post.author }} | {{ post.created_at|date:"F j, Y" }}</p>
+                <h3><a href="{% url 'blog:post_detail' post.pk %}">{{ post.title }}</a></h3>
+                <p><strong>By:</strong> {{ post.author }} | <strong>Created:</strong> {{ post.created_at|date:"F j, Y, H:i" }}</p>
                 <p>{{ post.content|truncatewords:20 }}</p>
+                {% if post.updated_at %}
+                <p><strong>Last edited:</strong> {{ post.updated_at|date:"F j, Y, H:i" }}</p>
+                {% endif %}
             </li>
         {% endfor %}
     </ul>

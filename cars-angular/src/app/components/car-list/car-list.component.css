@@ -1,0 +1,50 @@
+
+.car-table {
+    width: 100%;        
+    table-layout: fixed;
+    border-collapse: collapse;
+    overflow-x: auto;   
+  }
+  
+  .car-table th, .car-table td {
+    padding: 12px 8px;
+    text-align: left; 
+    overflow: hidden;  
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  
+  .car-table th {
+    min-width: 100px;
+  }
+  
+  .car-table td {
+    min-width: 100px; 
+  }
+  
+  @media screen and (max-width: 768px) {
+
+    .car-table {
+      display: block;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  
+    .car-table .year-column,
+    .car-table .actions-column {
+      display: none;
+    }
+  
+    .car-table th, .car-table td {
+      font-size: 14px;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+
+    .car-table th, .car-table td {
+      font-size: 12px;
+      padding: 8px;
+    }
+  }
+  

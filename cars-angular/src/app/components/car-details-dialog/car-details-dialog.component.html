@@ -1,0 +1,31 @@
+<h3>Szczegóły samochodu</h3>
+<div class="car-details-container">
+    <p><strong>Marka:</strong> <span class="truncate" [title]="car.make">{{ car.make | slice:0:20 }}</span></p>
+    <p><strong>Model:</strong> <span class="truncate" [title]="car.model">{{ car.model | slice:0:20 }}</span></p>
+    <p><strong>Rok:</strong> {{ car.year }}</p>
+
+
+  <h4>Dodaj nowy serwis:</h4>
+  <form (ngSubmit)="addService()" class="service-form">
+    <mat-form-field appearance="fill">
+      <mat-label>Tytuł serwisu</mat-label>
+      <input matInput [(ngModel)]="newServiceTitle" name="title" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Koszt serwisu</mat-label>
+      <input matInput type="number" [(ngModel)]="newServiceCost" name="cost" required />
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" aria-label="Dodaj serwis">Dodaj serwis</button>
+  </form>
+
+  
+
+  <h4>Serwisowanie:</h4>
+  <ul>
+    <li *ngFor="let service of car.services">
+      {{ service.part }} - {{ service.cost }} PLN ({{ service.date | date: 'shortDate' }})
+    </li>
+  </ul>
+</div>

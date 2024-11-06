@@ -1,0 +1,21 @@
+
+<h2 *ngIf="!data">Dodaj Samochód</h2>
+<h2 *ngIf="data">Edytuj Samochód</h2>
+<form class="car-form" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label>Marka</mat-label>
+    <input matInput [(ngModel)]="car.make" name="make" required />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Model</mat-label>
+    <input matInput [(ngModel)]="car.model" name="model" required />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Rok</mat-label>
+    <input matInput type="number" [(ngModel)]="car.year" name="year" required />
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">{{ data ? 'Zapisz' : 'Dodaj' }}</button>
+</form>

@@ -1,4 +1,3 @@
-
 from django import forms
 from django.contrib.auth.models import User
 from .models import Post
@@ -23,7 +22,7 @@ class UserRegistrationFrom(forms.ModelForm):
         
 class PostForm(forms.ModelForm):
     class Meta:
-        mode = Post
+        model = Post
         fields = ["title", "content"]
 
         

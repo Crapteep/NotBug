@@ -22,7 +22,7 @@ services:
     ports:
       - 8080:8080
 
-  backend:
+  todolist:
     build:
       context: ./todo-flask
       args:
@@ -50,6 +50,31 @@ services:
     ports:
       - "5000:5000"
     entrypoint: ["bash", "-c", "/app/prestart.sh && poetry run hypercorn app.main:app -c hypercorn_config.py"]
+
+  pokemons:
+    build:
+      context: ./pokemons-angular
+    ports:
+      - "4500:4500"
+    restart: always
+    environment:
+      - NODE_ENV=production
+
+  blog-django:
+    build:
+      context: ./blog-django
+    ports:
+      - "8000:8000"
+    restart: always
+  
+  cars:
+    build:
+      context: ./cars-angular
+    ports:
+      - "3000:3000"
+    restart: always
+    environment:
+      - NODE_ENV=production
 
 volumes:
   app-db-data:
